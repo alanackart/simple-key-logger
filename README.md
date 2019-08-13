@@ -1,3 +1,9 @@
+# My Changes
+
+- insert every Keystroke into mysql: [mysql_handler.c](https://github.com/alanackart/simple-key-logger/blob/master/mysql_handler.c)
+- add monitor for skeylogger(make sure it’s always running): see [monitor.sh](https://github.com/alanackart/simple-key-logger/blob/master/monitor.sh)
+
+
 SKeylogger
 
 SKeylogger is a simple keylogger. I had previously been using a few other open source keyloggers, but they stopped working when I upgraded my operating system. I tried to look through the code of those keyloggers, but it was undocumented, messy, and complex. I decided to make my own highly documented and very simple keylogger.
@@ -13,9 +19,7 @@ While Ubuntu isn't my main operating system (I'm an Arch Linux user), I got a fe
        username ALL = NOPASSWD: /path/to/skeylogger
 3. Reboot ubuntu. Open a terminal and type pgrep skeylogger. You should find one skeylogger process running.
 
-My Change Part
 
-- insert every Keystroke into mysql: mysql_handler.c
-- add monitor for skeylogger(make sure it’s always running): see monitor.sh
+
 
 
