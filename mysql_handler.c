@@ -39,7 +39,7 @@ void setup_mysql(MYSQL **con)
 void insert_data(MYSQL *con, char *name)
 {
    static char sqlcmd[256] = {0};
-   sprintf(sqlcmd, "insert fis.key_logger values(CURRENT_TIMESTAMP, '%s', NULL)", name);
+   sprintf(sqlcmd, "insert fis.key_logger values(CURRENT_TIMESTAMP(6), '%s', NULL)", name);
    if (mysql_query(con, sqlcmd))
    {
       finish_with_error(con);
